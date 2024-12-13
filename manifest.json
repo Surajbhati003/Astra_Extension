@@ -1,17 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "Global Voice Assistant and TTS",
-  "version": "1.0",
-  "description": "A Chrome extension for voice assistant and text-to-speech functionality.",
+  "name": "Global Voice Assistant and TTS Extension",
+  "version": "1.2",
+  "description": "An extension for voice assistant, text-to-speech functionality, and automated form signature filling.",
   "permissions": [
     "activeTab",
     "tabs",
     "background",
+    "storage",
+    "tts",
+    "commands",
     "scripting"
   ],
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["signatures/download.jpg"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "commands": {
     "toggle-voice-assistant": {
       "suggested_key": {
@@ -30,17 +46,16 @@
         "default": "Ctrl+Shift+T"
       },
       "description": "Stop Text-to-Speech"
+    },
+    "fill-signature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      },
+      "description": "Fill Signature Field"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
   "action": {
-    "default_popup": "popup.html"
-    
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.png"
   }
 }
