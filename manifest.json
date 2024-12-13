@@ -1,21 +1,33 @@
 {
-    "manifest_version": 3,
-    "name": "Tab-Based Text-to-Speech Extension",
-    "version": "1.0",
-    "description": "An extension to navigate websites with tab and get auditory feedback.",
-    "permissions": ["activeTab", "storage", "tts"],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "icons/icon.png"
+  "manifest_version": 3,
+  "name": "Voice Assistant Extension",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tts",
+    "commands",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
     }
+  ],
+  "commands": {
+    "toggle-voice-assistant": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V"
+      },
+      "description": "Toggle voice assistant"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.png"
   }
-  
+}
