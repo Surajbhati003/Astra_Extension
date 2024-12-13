@@ -7,24 +7,32 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+  <!-- Header Section -->
   <div class="container">
     <header>
       <h1>Voice Assistant & TTS Extension</h1>
     </header>
+
+    <!-- About Section -->
     <section class="info">
       <h2>About</h2>
       <p>This extension enhances web accessibility by providing voice assistant and text-to-speech functionalities. Easily navigate the web, perform search queries, and have webpage content read aloud.</p>
     </section>
+
+    <!-- User Guide Section -->
     <section class="guide">
       <h2>User Guide</h2>
       <ul>
         <li><strong>Activate Voice Assistant:</strong> Press <kbd>Ctrl+Shift+V</kbd>.</li>
         <li><strong>Start Text-to-Speech:</strong> Press <kbd>Ctrl+Shift+S</kbd>.</li>
         <li><strong>Stop Text-to-Speech:</strong> Press <kbd>Ctrl+Shift+T</kbd>.</li>
+        <li><strong>Save your Signature:</strong> Press <kbd>Ctrl+Shift+F</kbd>.</li>
         <li><strong>Navigate with Keyboard:</strong> Use <kbd>Tab</kbd> and arrow keys to move and hear content read aloud.</li>
         <li><strong>Voice Commands:</strong> Say "search for [query]" to perform a search.</li>
       </ul>
     </section>
+
+    <!-- Keyboard Shortcuts Section -->
     <section class="shortcuts">
       <h2>Useful Keyboard Shortcuts</h2>
       <ul>
@@ -34,7 +42,21 @@
         <li><strong>Reading and Accessibility:</strong> Press <kbd>Ctrl++</kbd> to zoom in, <kbd>Ctrl+-</kbd> to zoom out, <kbd>Ctrl+0</kbd> to reset zoom level.</li>
       </ul>
     </section>
+
+    <!-- Settings Section -->
+    <section class="settings">
+      <h3>Tab-Based TTS Settings</h3>
+      <label>
+        Enable Text-to-Speech
+        <input type="checkbox" id="ttsToggle">
+      </label>
+
+      <h3>Save Your Signature</h3>
+      <textarea id="signature" placeholder="Enter your signature here"></textarea>
+      <button id="saveSignature">Save</button>
+    </section>
   </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
