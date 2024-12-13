@@ -23,7 +23,7 @@ function toggleVoiceAssistant() {
   } else {
     // Start the voice assistant (initiate speech recognition)
     startVoiceRecognition();
-    speakText("Voice assistant activated. Please speak your query.");
+    speakText("Voice assistant activated");
     window.isVoiceAssistantActive = true;
   }
 }
@@ -142,9 +142,9 @@ function stopTextToSpeech() {
   }
 }
 
-// Event listener for the 'Tab' key
+// Event listeners for the 'Tab' and arrow keys
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Tab') {
+  if (event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     setTimeout(() => {
       const activeElement = document.activeElement; // Currently focused element
       const elementText = activeElement.getAttribute('aria-label') || activeElement.innerText || activeElement.value;

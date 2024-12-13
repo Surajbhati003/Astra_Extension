@@ -3,15 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings</title>
+  <title>Voice Assistant & TTS Extension</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h3>Tab-Based TTS Settings</h3>
-  <label>
-    Enable Text-to-Speech
-    <input type="checkbox" id="ttsToggle">
-  </label>
+  <div class="container">
+    <header>
+      <h1>Voice Assistant & TTS Extension</h1>
+    </header>
+    <section class="info">
+      <h2>About</h2>
+      <p>This extension enhances web accessibility by providing voice assistant and text-to-speech functionalities. Easily navigate the web, perform search queries, and have webpage content read aloud.</p>
+    </section>
+    <section class="guide">
+      <h2>User Guide</h2>
+      <ul>
+        <li><strong>Activate Voice Assistant:</strong> Press <kbd>Ctrl+Shift+V</kbd>.</li>
+        <li><strong>Start Text-to-Speech:</strong> Press <kbd>Ctrl+Shift+S</kbd>.</li>
+        <li><strong>Stop Text-to-Speech:</strong> Press <kbd>Ctrl+Shift+T</kbd>.</li>
+        <li><strong>Navigate with Keyboard:</strong> Use <kbd>Tab</kbd> and arrow keys to move and hear content read aloud.</li>
+        <li><strong>Voice Commands:</strong> Say "search for [query]" to perform a search.</li>
+      </ul>
+    </section>
+    <section class="shortcuts">
+      <h2>Useful Keyboard Shortcuts</h2>
+      <ul>
+        <li><strong>YouTube:</strong> Press <kbd>F</kbd> for full screen, <kbd>K</kbd> to play/pause, <kbd>M</kbd> to mute/unmute, <kbd>Arrow Left</kbd> for rewind, and <kbd>Arrow Right</kbd> for fast forward.</li>
+        <li><strong>Web Navigation:</strong> Press <kbd>Ctrl+L</kbd> to focus on the address bar, <kbd>Ctrl+T</kbd> to open a new tab, <kbd>Ctrl+W</kbd> to close the current tab.</li>
+        <li><strong>Search:</strong> Press <kbd>Ctrl+F</kbd> to open the find bar, <kbd>Ctrl+K</kbd> to jump to the search bar.</li>
+        <li><strong>Reading and Accessibility:</strong> Press <kbd>Ctrl++</kbd> to zoom in, <kbd>Ctrl+-</kbd> to zoom out, <kbd>Ctrl+0</kbd> to reset zoom level.</li>
+      </ul>
+    </section>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -1,35 +1,46 @@
 {
-    "manifest_version": 3,
-    "name": "Tab-Based Text-to-Speech Extension",
-    "version": "1.1",
-    "description": "An extension to navigate websites with tab and get auditory feedback.",
-    "permissions": ["activeTab",
-    "storage",
-    "tts",
-    "commands",
-    "scripting"],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-"commands": {
+  "manifest_version": 3,
+  "name": "Global Voice Assistant and TTS",
+  "version": "1.0",
+  "description": "A Chrome extension for voice assistant and text-to-speech functionality.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "background",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
     "toggle-voice-assistant": {
       "suggested_key": {
         "default": "Ctrl+Shift+V"
       },
-      "description": "Toggle voice assistant"
+      "description": "Toggle Voice Assistant"
+    },
+    "start-tts": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Start Text-to-Speech"
+    },
+    "stop-tts": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T"
+      },
+      "description": "Stop Text-to-Speech"
     }
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icons/icon.png"
+    "default_popup": "popup.html"
+    
   }
-
 }
-
-
