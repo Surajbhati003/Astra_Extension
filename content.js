@@ -1,12 +1,32 @@
 console.log("Content script loaded.");
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+// Listen for messages from the background script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "toggle-voice-assistant") {
     toggleVoiceAssistant();
   } else if (request.action === "start-tts") {
     startTextToSpeech();
   } else if (request.action === "stop-tts") {
     stopTextToSpeech();
+  }
+  if (request.action === "fillSignature") {
+    chrome.storage.local.get("userSignature", (result) => {
+      if (result.userSignature) {
+        const signatureField = document.querySelector('input[name="signature"], textarea[name="signature"]');
+        
+        if (signatureField) {
+          const img = document.createElement("img");
+          img.src = chrome.runtime.getURL("signatures/download.jpg");
+          
+          signatureField.value = result.userSignature;
+          alert("Signature field filled successfully!");
+        } else {
+          alert("Signature field not found on this page.");
+        }
+      } else {
+        alert("No signature saved. Please save your signature in the extension settings.");
+      }
+    });
   }
 });
 
@@ -23,7 +43,7 @@ function toggleVoiceAssistant() {
   } else {
     // Start the voice assistant (initiate speech recognition)
     startVoiceRecognition();
-    speakText("Voice assistant activated");
+    speakText("Voice assistant activated. Please speak your query.");
     window.isVoiceAssistantActive = true;
   }
 }
@@ -42,12 +62,10 @@ function initializeSpeechRecognition() {
 
   recognition.onerror = function (event) {
     console.log("Speech Recognition Error: ", event.error);
-    // Restart recognition on error to keep listening
     recognition.start();
   };
 
   recognition.onend = function () {
-    // Restart recognition when it ends to keep listening if still active
     if (window.isVoiceAssistantActive) {
       recognition.start();
     }
@@ -81,7 +99,7 @@ function processVoiceCommand(command) {
     searchInputSelectors.some((selector) => {
       searchInput = document.querySelector(selector);
       console.log(`Searching with selector: ${selector}, Found: ${searchInput}`);
-      return searchInput; // Stop iteration if a match is found
+      return searchInput;
     });
 
     if (searchInput) {
@@ -105,12 +123,10 @@ function processVoiceCommand(command) {
       window.recognition.stop();
     } else {
       speakText("No search field found on the page.");
-      // Keep listening if no search field is found
       window.recognition.start();
     }
   } else {
     speakText("Command not recognized.");
-    // Keep listening if command is not recognized
     window.recognition.start();
   }
 }
