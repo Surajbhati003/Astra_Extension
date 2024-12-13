@@ -14,6 +14,8 @@ chrome.commands.onCommand.addListener(function (command) {
             chrome.tabs.sendMessage(tab.id, { action: "start-tts" });
           } else if (command === "stop-tts") {
             chrome.tabs.sendMessage(tab.id, { action: "stop-tts" });
+          } else if (command === "fill-signature") {
+            chrome.tabs.sendMessage(tab.id, { action: "fillSignature" });
           }
         }
       });
