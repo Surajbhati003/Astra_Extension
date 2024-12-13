@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Tab-Based Text-to-Speech Extension",
-    "version": "1.0",
+    "version": "1.1",
     "description": "An extension to navigate websites with tab and get auditory feedback.",
     "permissions": ["activeTab", "storage", "tts"],
     "background": {
