@@ -227,4 +227,5 @@ chrome.storage.sync.get(['highContrastEnabled', 'screenMagnificationEnabled'], f
   if (data.screenMagnificationEnabled) {
     toggleScreenMagnification(true);
   }
+  initializeSpeechRecognition();
 });
