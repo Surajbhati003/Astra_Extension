@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Global Voice Assistant and TTS",
+  "name": "Astra Extension",
   "version": "1.0",
   "description": "A Chrome extension for voice assistant and text-to-speech functionality.",
   "permissions": [
@@ -18,18 +18,6 @@
         "default": "Ctrl+Shift+V"
       },
       "description": "Toggle Voice Assistant"
-    },
-    "start-tts": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+S"
-      },
-      "description": "Start Text-to-Speech"
-    },
-    "stop-tts": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+T"
-      },
-      "description": "Stop Text-to-Speech"
     }
   },
   "content_scripts": [
@@ -40,7 +28,8 @@
     }
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+     "default_icon": "icons/icon.png"
     
   }
 }

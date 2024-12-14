@@ -123,24 +123,6 @@ function speakText(text) {
 
 /* Text-to-Speech Functionality */
 
-let ttsUtterance;
-
-function startTextToSpeech() {
-  // Stop any ongoing speech synthesis
-  if (window.speechSynthesis.speaking) {
-    window.speechSynthesis.cancel();
-  }
-
-  const text = document.body.innerText;
-  ttsUtterance = new SpeechSynthesisUtterance(text);
-  window.speechSynthesis.speak(ttsUtterance);
-}
-
-function stopTextToSpeech() {
-  if (ttsUtterance) {
-    window.speechSynthesis.cancel();
-  }
-}
 
 // Event listeners for the 'Tab' and arrow keys
 document.addEventListener('keydown', (event) => {
@@ -152,9 +134,9 @@ document.addEventListener('keydown', (event) => {
       if (elementText) {
         speakText(elementText.trim());
       } else {
-        speakText("No accessible text found.");
+        speakText(" ");
       }
-    }, 100); // Delay to ensure the next element is focused
+    }, 50); // Delay to ensure the next element is focused
   }
 });
 
