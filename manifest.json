@@ -1,35 +1,50 @@
 {
-  "manifest_version": 3,
-  "name": "Astra Extension",
-  "version": "1.0",
-  "description": "A Chrome extension for voice assistant and text-to-speech functionality.",
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "background",
-    "scripting"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "commands": {
-    "toggle-voice-assistant": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+V"
+    "manifest_version": 3,
+    "name": "Astra Extension",
+    "version": "1.0",
+    "description": "A Chrome extension for voice assistant and text-to-speech functionality.",
+    "permissions": [
+      "activeTab",
+      "tabs",
+      "storage",
+      "scripting"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "commands": {
+      "toggle-voice-assistant": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+V"
+        },
+        "description": "Toggle Voice Assistant"
       },
-      "description": "Toggle Voice Assistant"
+      "toggle-high-contrast": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+H"
+        },
+        "description": "Toggle high contrast mode"
+      },
+      "toggle-screen-magnification": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+M"
+        },
+        "description": "Toggle screen magnification"
+      }
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icons/icon.png"
+    },
+    "icons": {
+      "16": "icons/icon.png"
     }
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
-  "action": {
-    "default_popup": "popup.html",
-     "default_icon": "icons/icon.png"
-    
   }
-}
+  

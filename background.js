@@ -20,3 +20,17 @@ chrome.commands.onCommand.addListener(function (command) {
     });
   });
 });
+
+
+chrome.commands.onCommand.addListener((command) => {
+    if (command === 'toggle-high-contrast') {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'toggle-high-contrast' });
+      });
+    } else if (command === 'toggle-screen-magnification') {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'toggle-screen-magnification' });
+      });
+    }
+  });
+  

@@ -7,6 +7,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     startTextToSpeech();
   } else if (request.action === "stop-tts") {
     stopTextToSpeech();
+  } else if (request.action === "toggle-high-contrast") {
+    toggleHighContrast(request.enabled);
+  } else if (request.action === "toggle-screen-magnification") {
+    toggleScreenMagnification(request.enabled);
   }
 });
 
@@ -123,7 +127,6 @@ function speakText(text) {
 
 /* Text-to-Speech Functionality */
 
-
 // Event listeners for the 'Tab' and arrow keys
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
@@ -142,3 +145,86 @@ document.addEventListener('keydown', (event) => {
 
 // Initialize speech recognition when the script is loaded
 initializeSpeechRecognition();
+
+/* High Contrast and Screen Magnification */
+
+function toggleHighContrast(enabled) {
+  if (enabled) {
+    enableHighContrast();
+  } else {
+    disableHighContrast();
+  }
+}
+
+function toggleScreenMagnification(enabled) {
+  if (enabled) {
+    enableScreenMagnification();
+  } else {
+    disableScreenMagnification();
+  }
+}
+
+function enableHighContrast() {
+  const style = document.createElement('style');
+  style.id = 'high-contrast-style';
+  style.innerHTML = `
+    * {
+      background-color: #000 !important;
+      color: #fff !important;
+      outline: 2px solid #fff !important;
+      outline-offset: -2px;
+    }
+    a {
+      color: #0d6efd !important;
+    }
+    button, input, select, textarea {
+      background-color: #444 !important;
+      color: #fff !important;
+      border: 2px solid #fff !important;
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.classList.add('high-contrast');
+}
+
+function disableHighContrast() {
+  const style = document.getElementById('high-contrast-style');
+  if (style) {
+    style.remove();
+  }
+  document.body.classList.remove('high-contrast');
+}
+
+function enableScreenMagnification() {
+  const style = document.createElement('style');
+  style.id = 'screen-magnification-style';
+  style.innerHTML = `
+    html {
+      zoom: 1.5;
+    }
+    * {
+      max-width: 100%;
+      overflow: visible !important;
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.classList.add('screen-magnification');
+}
+
+function disableScreenMagnification() {
+  const style = document.getElementById('screen-magnification-style');
+  if (style) {
+    style.remove();
+  }
+  document.body.classList.remove('screen-magnification');
+}
+
+// Initialize accessibility features based on the stored state
+chrome.storage.sync.get(['highContrastEnabled', 'screenMagnificationEnabled'], function (data) {
+  if (data.highContrastEnabled) {
+    toggleHighContrast(true);
+  }
+  if (data.screenMagnificationEnabled) {
+    toggleScreenMagnification(true);
+  }
+});
