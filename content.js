@@ -152,7 +152,7 @@ document.addEventListener('keydown', (event) => {
       if (elementText) {
         speakText(elementText.trim());
       } else {
-        speakText("No accessible text found.");
+        speakText(" ");
       }
     }, 100); // Delay to ensure the next element is focused
   }
