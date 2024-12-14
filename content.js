@@ -23,7 +23,7 @@ function toggleVoiceAssistant() {
   } else {
     // Start the voice assistant (initiate speech recognition)
     startVoiceRecognition();
-    speakText("Voice assistant activated. Please speak your query.");
+    speakText("Voice assistant activated. ");
     window.isVoiceAssistantActive = true;
   }
 }
